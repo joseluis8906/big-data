@@ -5,19 +5,24 @@
 
 #ifndef _BFS_NODE_
 #define _BFS_NODE_
+
 namespace Bfs {
   class Node {
     public:
+      std::shared_ptr<Node> parent;
       std::vector<int> data;
-      std::unique_ptr<Node> left;
-      std::unique_ptr<Node> right;
+      std::shared_ptr<Node> childLeft;
+      std::shared_ptr<Node> childRight;
+      std::shared_ptr<Node> brother;
+      std::shared_ptr<Node> cousin;
 
       Node();
       Node(std::vector<int> data);
-      void print();
-      bool isEqual(Node &other);
-      void operateLeft();
-      void operateRight();
+      Node(std::shared_ptr<Node> parent, std::vector<int> data);
+      std::string to_string();
+      bool isEqual(std::shared_ptr<Node> other);
+      void expand();
   };
 }
+
 #endif
