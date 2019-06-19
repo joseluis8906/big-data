@@ -13,8 +13,8 @@ class Application {
     bool solucionado;
 
     Application()  {
-      this->inicial = std::shared_ptr<Bfs::Node>(new Bfs::Node(std::vector<int>({2,1,4,3})));
-      this->solucion = std::shared_ptr<Bfs::Node>(new Bfs::Node(std::vector<int>({1,2,3,4})));
+      this->inicial = std::shared_ptr<Bfs::Node>(new Bfs::Node(std::vector<int>({4,3,5,2,1})));
+      this->solucion = std::shared_ptr<Bfs::Node>(new Bfs::Node(std::vector<int>({1,2,3,4,5})));
       this->it = this->inicial;
       this->nextLevel = this->it;
       this->level = 0;
@@ -24,7 +24,7 @@ class Application {
     }
 
     void compute() {
-      while (!this->solucionado && this->level <= 10) {
+      while (!this->solucionado && this->level <= 14) {
         this->findSolution();
       }
       if (this->solucionado) {
@@ -36,8 +36,8 @@ class Application {
 
     void findSolution() {
       int nodesByLevel = pow(2, this->level);
+      std::cout << "nodes by level " << this->level << ": " << nodesByLevel << std::endl;
       for (int i = 0; i < nodesByLevel; i++) {
-        std::cout << this->level << ": " << this->it->to_string() << std::endl;
         if (it->isEqual(this->solucion)) {
           this->solucionado = true;
           break;
